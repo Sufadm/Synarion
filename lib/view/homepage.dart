@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:synarion_project/controller/food_items.dart';
+import 'package:synarion_project/model/food_items.dart';
 import 'package:synarion_project/utils/colors.dart';
 import 'package:synarion_project/utils/sizedbox.dart';
 import 'package:synarion_project/widgets/categorie_options.dart';
@@ -13,8 +15,10 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> recommendedItems =
-        List.generate(5, (index) => const FoodList());
+    final List<Widget> recommendedItems = List.generate(5, (index) {
+      List<FastFoodItem> allItems = FoodItemsList.convertingMaptoObject();
+      return FoodList(item: allItems[index]);
+    });
 
     return Scaffold(
       resizeToAvoidBottomInset: true,
@@ -89,7 +93,11 @@ class HomePage extends StatelessWidget {
                   itemCount: 5,
                   separatorBuilder: (context, index) => kHeight10,
                   itemBuilder: (context, index) {
-                    return const FeaturedFoods();
+                    List<FastFoodItem> allItems =
+                        FoodItemsList.convertingMaptoObject();
+                    return FeaturedFoods(
+                      item: allItems[index],
+                    );
                   },
                 ),
               ),

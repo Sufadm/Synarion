@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:synarion_project/model/food_items.dart';
 import 'package:synarion_project/utils/colors.dart';
 import 'package:synarion_project/utils/sizedbox.dart';
 
 class FeaturedFoods extends StatelessWidget {
   const FeaturedFoods({
     super.key,
+    required this.item,
   });
-
+  final FastFoodItem item;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -29,7 +31,7 @@ class FeaturedFoods extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8),
                 child: Image.network(
-                  'https://www.eatingwell.com/thmb/vFO43UyAy2NBfjOG6wADLLCE-Kc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/cucumber-sandwich-eddcc95811f5426094ea5dbea6a6b026.jpg',
+                  item.image,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -38,9 +40,9 @@ class FeaturedFoods extends StatelessWidget {
           Column(
             children: [
               kHeight15,
-              const Text(
-                'Delicius Hot Dog',
-                style: TextStyle(fontWeight: FontWeight.bold),
+              Text(
+                item.name,
+                style: const TextStyle(fontWeight: FontWeight.bold),
               ),
               Container(
                   margin: const EdgeInsets.only(right: 35),
