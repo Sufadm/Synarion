@@ -1,4 +1,4 @@
-Map<String, dynamic> jsonData = {
+Map<String, dynamic> listofItems = {
   "fast_food_items": [
     {
       "name": "Burger",

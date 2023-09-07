@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:synarion_project/utils/colors.dart';
+import 'package:synarion_project/utils/const/colors.dart';
 
 class CategorieFoodsOptions extends StatelessWidget {
   const CategorieFoodsOptions({

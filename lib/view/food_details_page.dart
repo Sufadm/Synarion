@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:synarion_project/controller/food_items.dart';
 import 'package:synarion_project/model/food_items.dart';
-import 'package:synarion_project/utils/colors.dart';
-import 'package:synarion_project/utils/sizedbox.dart';
-import 'package:synarion_project/widgets/food_details_page_featured.dart';
-import 'package:synarion_project/widgets/icons_top.dart';
+import 'package:synarion_project/utils/const/colors.dart';
+import 'package:synarion_project/utils/const/sizedbox.dart';
+import 'package:synarion_project/widgets/food_details/food_details_page_featured.dart';
+import 'package:synarion_project/widgets/global/icons_top.dart';
 
 class FoodDetailsPage extends StatelessWidget {
   const FoodDetailsPage({
     super.key,
     required this.item,
   });
-  final FastFoodItem item;
+  final FoodListModel item;
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> featureOptions = List.generate(
-      4,
-      (index) => const FoodDetailsFeaturesOptions(),
-    );
+    final List<Widget> featureOptions = List.generate(10, (index) {
+      List<FoodListModel> allItems = FoodItemsList.convertingMaptoObject();
+      return FoodDetailsFeaturesOptions(item: allItems[index]);
+    });
     return SafeArea(
       child: Scaffold(
           body: Padding(
@@ -28,13 +29,16 @@ class FoodDetailsPage extends StatelessWidget {
             children: [
               kHeight10,
               const IconsTop(
-                color: kBlack,
-                imageUrl:
-                    'https://img.freepik.com/premium-vector/shopping-cart-icon-isolated-white-background-vector-illustration_736051-305.jpg',
+                image: '',
+                color: Color(0xFFF58370),
+                icon: Icon(
+                  Icons.shopping_cart,
+                  color: kWhite,
+                ),
               ),
               kHeight25,
               Text(
-                item.name,
+                item.name.toUpperCase(),
                 style:
                     const TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
               ),
@@ -80,12 +84,17 @@ class FoodDetailsPage extends StatelessWidget {
                                   ),
                                   height: 35,
                                   width: 35,
-                                  child: const Center(child: Text('❤️')),
+                                  child: Center(
+                                      child: Image.network(
+                                    'https://static.thenounproject.com/png/4590951-200.png',
+                                    height: 20,
+                                    color: Colors.red,
+                                  )),
                                 ),
                               ),
                               Container(
                                 margin: const EdgeInsets.only(
-                                    bottom: 90, right: 20),
+                                    bottom: 70, right: 20),
                                 child: Container(
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(7),
@@ -116,19 +125,20 @@ class FoodDetailsPage extends StatelessWidget {
                   ),
                   SingleChildScrollView(
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Container(
+                          margin: const EdgeInsets.only(left: 20),
                           child: const Text(
-                            '     ₹ 52',
+                            '₹ 52',
                             style: TextStyle(fontSize: 25),
                           ),
                         ),
                         Container(
-                            margin: const EdgeInsets.only(right: 0),
+                            margin: const EdgeInsets.only(left: 66),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(7),
-                              color: const Color.fromARGB(255, 233, 74, 63),
+                              color: const Color(0xFFF25051),
                             ),
                             width: 250,
                             height: 60,
@@ -147,9 +157,9 @@ class FoodDetailsPage extends StatelessWidget {
                                         MainAxisAlignment.spaceEvenly,
                                     children: [
                                       Text(
-                                        '—  0  +',
+                                        '—   0   +',
                                         style: TextStyle(
-                                            color: kBlack, fontSize: 15),
+                                            color: Colors.red, fontSize: 15),
                                       )
                                     ],
                                   ),

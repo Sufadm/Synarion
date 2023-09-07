@@ -1,18 +1,18 @@
-class FastFoodItem {
+class FoodListModel {
   final String name;
   final String image;
   final String description;
   final bool veg;
 
-  FastFoodItem({
+  FoodListModel({
     required this.name,
     required this.image,
     required this.description,
     required this.veg,
   });
 
-  factory FastFoodItem.fromJson(Map<String, dynamic> json) {
-    return FastFoodItem(
+  factory FoodListModel.fromJson(Map<String, dynamic> json) {
+    return FoodListModel(
       name: json['name'],
       image: json['image'],
       description: json['description'],
