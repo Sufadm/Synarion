@@ -15,8 +15,9 @@ class FoodList extends StatelessWidget {
     return InkWell(
       onTap: () =>
           Navigator.push(context, MaterialPageRoute(builder: (context) {
-        List<FastFoodItem> allItems = FoodItemsList.convertingMaptoObject();
-        return const FoodDetailsPage();
+        return FoodDetailsPage(
+          item: item,
+        );
       })),
       child: Container(
         decoration: BoxDecoration(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:synarion_project/model/food_items.dart';
 import 'package:synarion_project/utils/colors.dart';
 import 'package:synarion_project/utils/sizedbox.dart';
 import 'package:synarion_project/widgets/food_details_page_featured.dart';
@@ -7,7 +8,9 @@ import 'package:synarion_project/widgets/icons_top.dart';
 class FoodDetailsPage extends StatelessWidget {
   const FoodDetailsPage({
     super.key,
+    required this.item,
   });
+  final FastFoodItem item;
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +33,10 @@ class FoodDetailsPage extends StatelessWidget {
                     'https://img.freepik.com/premium-vector/shopping-cart-icon-isolated-white-background-vector-illustration_736051-305.jpg',
               ),
               kHeight25,
-              const Text(
-                'BURGER',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+              Text(
+                item.name,
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
