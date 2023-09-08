@@ -1,7 +1,7 @@
 import 'package:synarion_project/model/food_items.dart';
 import 'package:synarion_project/utils/const/data.dart';
 
-class FoodItemsList {
+class FoodItemsListController {
   static List<FoodListModel> convertingMaptoObject() {
     List<FoodListModel> allItems = [];
     for (var element in listofItems['fast_food_items']) {

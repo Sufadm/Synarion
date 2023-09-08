@@ -1,33 +1,43 @@
 import 'package:flutter/material.dart';
-import 'package:synarion_project/utils/const/colors.dart';
+import 'package:synarion_project/controller/select_options_provider.dart';
+import 'package:provider/provider.dart';
 
 class CategorieFoodsOptions extends StatelessWidget {
-  const CategorieFoodsOptions({
-    super.key,
-  });
+  const CategorieFoodsOptions({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    final selectedOptionProvider = Provider.of<SelectedOptionProvider>(context);
+
+    final options = [
+      'FEATURED',
+      'COMBOS',
+      'FAVOURITES',
+      'RECOMMENDED',
+    ];
+
+    return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        Text(
-          'FEATURED',
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-        ),
-        Text(
-          'COMBOS',
-          style: TextStyle(color: kgrey),
-        ),
-        Text(
-          'FAVOURITES',
-          style: TextStyle(color: kgrey),
-        ),
-        Text(
-          'RECOMMENDED',
-          style: TextStyle(color: kgrey),
-        ),
-      ],
+      children: List.generate(options.length, (index) {
+        return GestureDetector(
+          onTap: () {
+            selectedOptionProvider.setSelectedOptionIndex(index);
+          },
+          child: Text(
+            options[index],
+            style: TextStyle(
+              fontWeight: index == selectedOptionProvider.selectedOptionIndex
+                  ? FontWeight.bold
+                  : FontWeight.normal,
+              fontSize:
+                  index == selectedOptionProvider.selectedOptionIndex ? 17 : 13,
+              color: index == selectedOptionProvider.selectedOptionIndex
+                  ? Colors.black
+                  : Colors.grey,
+            ),
+          ),
+        );
+      }),
     );
   }
 }

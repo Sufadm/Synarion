@@ -12,11 +12,13 @@ class HomePage extends StatelessWidget {
   const HomePage({
     super.key,
   });
-
   @override
   Widget build(BuildContext context) {
+    final screenheight = MediaQuery.of(context).size.height;
+
     final List<Widget> recommendedItems = List.generate(10, (index) {
-      List<FoodListModel> allItems = FoodItemsList.convertingMaptoObject();
+      List<FoodListModel> allItems =
+          FoodItemsListController.convertingMaptoObject();
       return FoodList(
         item: allItems[index],
         index: index,
@@ -69,6 +71,7 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 15),
+
               const Text(
                 'Recommended',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -77,9 +80,9 @@ class HomePage extends StatelessWidget {
 
               // food options recommended--------------------
               SizedBox(
-                height: 210,
+                height: screenheight / 4.5,
                 child: ListView.separated(
-                  separatorBuilder: (context, index) => kWidth10,
+                  separatorBuilder: (context, index) => kWidth15,
                   scrollDirection: Axis.horizontal,
                   itemCount: recommendedItems.length,
                   itemBuilder: (context, index) {
@@ -102,7 +105,7 @@ class HomePage extends StatelessWidget {
                   separatorBuilder: (context, index) => kHeight10,
                   itemBuilder: (context, index) {
                     List<FoodListModel> allItems =
-                        FoodItemsList.convertingMaptoObject();
+                        FoodItemsListController.convertingMaptoObject();
                     return FeaturedFoods(
                       item: allItems[index],
                     );

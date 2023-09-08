@@ -11,10 +11,11 @@ class FoodDetailsFeaturesOptions extends StatelessWidget {
   final FoodListModel item;
   @override
   Widget build(BuildContext context) {
+    final screenheight = MediaQuery.of(context).size.height;
     return Container(
       decoration:
           BoxDecoration(borderRadius: BorderRadius.circular(10), color: kWhite),
-      height: 100,
+      height: screenheight / 9,
       width: double.infinity,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,9 +52,18 @@ class FoodDetailsFeaturesOptions extends StatelessWidget {
               kHeight5,
               Container(
                   margin: const EdgeInsets.only(right: 70),
-                  child: const Text(
-                    '₹ 18',
-                    style: TextStyle(color: Colors.red),
+                  child: const Row(
+                    children: [
+                      Text(
+                        '₹ 18',
+                        style: TextStyle(color: Colors.red),
+                      ),
+                      kWidth10,
+                      Text(
+                        '₹ 99',
+                        style: TextStyle(color: kgrey, fontSize: 10),
+                      )
+                    ],
                   ))
             ],
           ),

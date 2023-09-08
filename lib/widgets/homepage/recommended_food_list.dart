@@ -15,7 +15,12 @@ class FoodList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenheight = MediaQuery.of(context).size.height;
+    final screenwidth = MediaQuery.of(context).size.width;
+
     final itemColor = itemColors[index % itemColors.length];
+    final textitemColor = textitemColors[index % itemColors.length];
+
     return InkWell(
       onTap: () =>
           Navigator.push(context, MaterialPageRoute(builder: (context) {
@@ -28,13 +33,14 @@ class FoodList extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           color: itemColor,
         ),
-        height: 200,
-        width: 130,
+        height: screenheight / 4,
+        width: screenwidth / 3,
         child: Column(
           children: [
             kHeight35,
             Center(
               child: CircleAvatar(
+                backgroundColor: kWhite,
                 backgroundImage: NetworkImage(item.image),
                 radius: 35,
               ),
@@ -42,10 +48,15 @@ class FoodList extends StatelessWidget {
             kHeight15,
             Text(
               item.name,
-              style:
-                  const TextStyle(color: kBlack, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                color: textitemColor,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-            const Text('₹ 48')
+            Text(
+              '₹ 48',
+              style: TextStyle(color: textitemColor),
+            )
           ],
         ),
       ),

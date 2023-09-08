@@ -3,7 +3,8 @@ import 'package:synarion_project/controller/food_items.dart';
 import 'package:synarion_project/model/food_items.dart';
 import 'package:synarion_project/utils/const/colors.dart';
 import 'package:synarion_project/utils/const/sizedbox.dart';
-import 'package:synarion_project/widgets/food_details/food_details_page_featured.dart';
+import 'package:synarion_project/widgets/food_details_page/custom_icon_button.dart';
+import 'package:synarion_project/widgets/food_details_page/food_details_page_featured.dart';
 import 'package:synarion_project/widgets/global/icons_top.dart';
 
 class FoodDetailsPage extends StatelessWidget {
@@ -15,8 +16,12 @@ class FoodDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenheight = MediaQuery.of(context).size.height;
+    final screenwidth = MediaQuery.of(context).size.height;
+
     final List<Widget> featureOptions = List.generate(10, (index) {
-      List<FoodListModel> allItems = FoodItemsList.convertingMaptoObject();
+      List<FoodListModel> allItems =
+          FoodItemsListController.convertingMaptoObject();
       return FoodDetailsFeaturesOptions(item: allItems[index]);
     });
     return SafeArea(
@@ -28,6 +33,8 @@ class FoodDetailsPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               kHeight10,
+
+              //top icons----------------
               const IconsTop(
                 image: '',
                 color: Color(0xFFF58370),
@@ -36,7 +43,7 @@ class FoodDetailsPage extends StatelessWidget {
                   color: kWhite,
                 ),
               ),
-              kHeight25,
+              kHeight30,
               Text(
                 item.name.toUpperCase(),
                 style:
@@ -46,83 +53,52 @@ class FoodDetailsPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    height: 300,
+                    height: screenheight / 2.9,
                     width: double.infinity,
                     color: kWhite,
                     child: Row(
                       children: [
+                        //Food Photo List-----------
                         Container(
                           margin: const EdgeInsets.only(left: 20),
                           child: Image.network(
-                            'https://recipes.timesofindia.com/thumb/83565509.cms?width=1200&height=900',
-                            width: 280,
-                            height: 400,
-                          ),
+                              'https://recipes.timesofindia.com/thumb/83565509.cms?width=1200&height=900',
+                              width: screenwidth * 0.28,
+                              height: screenheight / 4),
                         ),
+
+                        // custom icon button-----------------------------------
                         Container(
                           color: kWhite,
-                          margin: const EdgeInsets.only(left: 40),
-                          child: Column(
+                          margin: const EdgeInsets.only(left: 70),
+                          child: const Column(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              Container(
-                                margin: const EdgeInsets.only(
-                                    bottom: 70, right: 20),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(7),
-                                    color: Colors.white,
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.grey
-                                            .withOpacity(0.5), // Shadow color
-                                        spreadRadius: 2, // Spread radius
-                                        blurRadius: 5, // Blur radius
-                                        offset: const Offset(0, 3), // Offset
-                                      ),
-                                    ],
+                              Column(
+                                children: [
+                                  CustomIconButton(
+                                    imageUrl:
+                                        'https://static.thenounproject.com/png/4590951-200.png',
+                                    iconColor: Colors.red,
+                                    backgroundColor: Colors.white,
+                                    iconSize: 20.0,
                                   ),
-                                  height: 35,
-                                  width: 35,
-                                  child: Center(
-                                      child: Image.network(
-                                    'https://static.thenounproject.com/png/4590951-200.png',
-                                    height: 20,
-                                    color: Colors.red,
-                                  )),
-                                ),
-                              ),
-                              Container(
-                                margin: const EdgeInsets.only(
-                                    bottom: 70, right: 20),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(7),
-                                    color: Colors.white,
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.grey.withOpacity(0.5),
-                                        spreadRadius: 2,
-                                        blurRadius: 5,
-                                        offset: const Offset(0, 3),
-                                      ),
-                                    ],
+                                  CustomIconButton(
+                                    iconData: Icons.share,
+                                    iconColor: Colors.red,
+                                    backgroundColor: Colors.white,
+                                    iconSize: 30.0,
                                   ),
-                                  height: 35,
-                                  width: 35,
-                                  child: const Center(
-                                      child: Icon(
-                                    Icons.share,
-                                    color: Colors.red,
-                                  )),
-                                ),
-                              ),
+                                ],
+                              )
                             ],
                           ),
                         ),
                       ],
                     ),
                   ),
+
+                  // price & Add to cart widget---------------------------------
                   SingleChildScrollView(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -140,8 +116,8 @@ class FoodDetailsPage extends StatelessWidget {
                               borderRadius: BorderRadius.circular(7),
                               color: const Color(0xFFF25051),
                             ),
-                            width: 250,
-                            height: 60,
+                            width: screenwidth * 0.29,
+                            height: screenheight / 13,
                             child: Row(
                               children: [
                                 Container(
@@ -157,7 +133,7 @@ class FoodDetailsPage extends StatelessWidget {
                                         MainAxisAlignment.spaceEvenly,
                                     children: [
                                       Text(
-                                        '—   0   +',
+                                        '—   0    +',
                                         style: TextStyle(
                                             color: Colors.red, fontSize: 15),
                                       )
@@ -176,13 +152,15 @@ class FoodDetailsPage extends StatelessWidget {
                       ],
                     ),
                   ),
+
+                  // featured food list--------------------------
                   kHeight20,
                   const Text(
                     'FEATURED',
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
-                    height: 500,
+                    height: screenheight / 2,
                     child: ListView.builder(
                       itemCount: featureOptions.length,
                       itemBuilder: (context, index) {

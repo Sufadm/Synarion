@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 class IconsTop extends StatelessWidget {
   final Color color;
   final String image;
-  final Icon? icon; // Make the icon optional by using 'Icon?' type
+  final Icon? icon;
 
   const IconsTop({
     Key? key,
     required this.image,
     required this.color,
-    this.icon, // Make the icon optional
+    this.icon,
   }) : super(key: key);
 
   @override
@@ -28,7 +28,7 @@ class IconsTop extends StatelessWidget {
           backgroundImage: NetworkImage(image),
           backgroundColor: color,
           radius: 25,
-          child: icon, // Display the icon if it's provided, or null if not
+          child: icon,
         ),
       ],
     );
