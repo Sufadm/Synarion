@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:synarion_project/controller/select_options_provider.dart';
+import 'package:synarion_project/viewmodel/select_options_provider.dart';
 import 'package:provider/provider.dart';
 
 class CategorieFoodsOptions extends StatelessWidget {

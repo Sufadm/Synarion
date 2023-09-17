@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:synarion_project/model/food_items.dart';
-import 'package:synarion_project/utils/const/colors.dart';
-import 'package:synarion_project/utils/const/sizedbox.dart';
+import 'package:synarion_project/view/utils/const/colors.dart';
+import 'package:synarion_project/view/utils/const/sizedbox.dart';
 
 class FoodDetailsFeaturesOptions extends StatelessWidget {
   const FoodDetailsFeaturesOptions({

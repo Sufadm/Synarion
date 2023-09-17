@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:synarion_project/controller/food_items.dart';
+import 'package:synarion_project/viewmodel/food_items.dart';
 import 'package:synarion_project/model/food_items.dart';
-import 'package:synarion_project/utils/const/colors.dart';
-import 'package:synarion_project/utils/const/sizedbox.dart';
-import 'package:synarion_project/widgets/homepage/categorie_options.dart';
-import 'package:synarion_project/widgets/global/featured_foods.dart';
-import 'package:synarion_project/widgets/global/icons_top.dart';
-import 'package:synarion_project/widgets/homepage/recommended_food_list.dart';
+import 'package:synarion_project/view/utils/const/colors.dart';
+import 'package:synarion_project/view/utils/const/sizedbox.dart';
+import 'package:synarion_project/view/screens/widgets/global/featured_foods.dart';
+import 'package:synarion_project/view/screens/widgets/global/icons_top.dart';
+import 'package:synarion_project/view/screens/widgets/homepage/categorie_options.dart';
+import 'package:synarion_project/view/screens/widgets/homepage/recommended_food_list.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({

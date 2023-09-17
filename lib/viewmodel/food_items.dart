@@ -1,5 +1,5 @@
 import 'package:synarion_project/model/food_items.dart';
-import 'package:synarion_project/utils/const/data.dart';
+import 'package:synarion_project/view/utils/const/data.dart';
 
 class FoodItemsListController {
   static List<FoodListModel> convertingMaptoObject() {
